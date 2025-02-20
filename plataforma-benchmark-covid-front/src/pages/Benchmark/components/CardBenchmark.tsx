@@ -27,7 +27,7 @@ export const CardBenchmark = () => {
         <Flex w={'248px'} height={'170px'} borderRadius={'12px'}>
           <Image
             borderRadius={'12px'}
-            src="public/cardBenchmarkImage.png"
+            src="/cardBenchmarkImage.png"
             backgroundSize={'cover'}
             w="100%"
           />
