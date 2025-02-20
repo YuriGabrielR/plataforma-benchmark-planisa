@@ -8,7 +8,7 @@ export const BenchmarkDetalhes = () => {
   return (
     <Flex h="100vh" w="100vw">
       <Menu />
-      <Sidebar />
+      <Sidebar width="270px"/>
       <Box h="100vh" px={'20px'} mt={{ base: '70px', lg: '0' }} w={'100vw'}>
         <Flex flexDir={'column'} gap="30px">
           <Text fontSize={'25px'} color={'#576A7A'} fontWeight={600} py={'5px'}>

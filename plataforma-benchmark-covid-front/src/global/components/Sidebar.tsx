@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import { paginaAtiva } from '../utilitarios/paginaAtiva'
 import { rotasUrls } from '../../rotas/rotasUrls'
 
+type SidebarProps ={
+  width: string
+}
 
-export const Sidebar = () => {
+export const Sidebar = ({ width }: SidebarProps) => {
   const navigate = useNavigate()
 
   const itensNavegacao = [
@@ -25,7 +28,7 @@ export const Sidebar = () => {
 
   return (
     <Box
-      w="400px"
+      w={width}
       h={'100vh'}
       bg="#576a7a"
       display={{ base: 'none', lg: 'flex' }}
@@ -33,7 +36,7 @@ export const Sidebar = () => {
       gap={'13px'}>
       <Flex width="100%" h="90px" justifyContent={'center'}>
         <Image
-          src="public/logo.png"
+          src="/logo.png"
           w={'160px'}
           h="auto"
           backgroundSize={'contain'}
