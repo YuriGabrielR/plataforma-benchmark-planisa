@@ -51,7 +51,7 @@ export const Menu = () => {
           w="100%">
           <Flex width="80px" h="40px" justifyContent={'center'}>
             <Image
-              src="/public/logo.png"
+              src="/logo.png"
               w={'160px'}
               h="auto"
               backgroundSize={'contain'}

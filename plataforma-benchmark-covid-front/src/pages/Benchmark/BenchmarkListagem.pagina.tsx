@@ -22,7 +22,7 @@ export const BenchmarkListagem = () => {
     <>
       <Flex h="100vh" overflow={{ base: 'scroll', lg: 'hidden' }}>
         <Menu />
-        <Sidebar />
+        <Sidebar width="270px"/>
         <Box h="100vh" px={'20px'} mt={{ base: '70px', lg: '0' }}>
           <Flex flexDir={'column'} gap="30px">
             <Text
@@ -66,7 +66,7 @@ export const BenchmarkListagem = () => {
                 width={'100%'}
                 justifyContent={'center'}
                 flexWrap={'wrap'}
-                overflowY={{ base: 'inherit', lg: 'scroll' }}>
+                overflowY={{ base: 'auto', lg: 'hidden' }}>
                 <CardBenchmark />
               </Flex>
             </Box>

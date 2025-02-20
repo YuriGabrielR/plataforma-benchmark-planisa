@@ -50,7 +50,7 @@ export const Home = () => {
         <Image
           h={{ base: '360px', lg: '480px' }}
           w="auto"
-          src="public/imgHome.svg"
+          src="/imgHome.svg"
         />
       </Flex>
     </Box>
