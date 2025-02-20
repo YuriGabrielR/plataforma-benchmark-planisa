@@ -1,0 +1,12 @@
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import { configRouter } from './rotas/Router'
+import { RouterProvider } from 'react-router-dom'
+
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+  <RouterProvider router={configRouter} />
+  </StrictMode>
+)
