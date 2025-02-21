@@ -8,6 +8,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,8 +42,23 @@ public class ValidationExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> handleIllegalArgumentException(IllegalArgumentException ex) {
         Map<String, String> errors = new HashMap<>();
-        errors.put("erro", ex.getMessage());
 
+        if (ex.getMessage().toLowerCase().contains("uuid") || ex.getMessage().toLowerCase().contains("não encontrado")) {
+            errors.put("erro", "Id não encontrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
+        }
+
+        errors.put("erro", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
+
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<Map<String, String>> handleResponseStatusException(ResponseStatusException ex) {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("erro", ex.getMessage());
+        return ResponseEntity.status(ex.getStatusCode()).body(errors);
+    }
+
+
 }
