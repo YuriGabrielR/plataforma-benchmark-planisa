@@ -4,9 +4,10 @@ import com.yuritech.plataforma_benchmark_covid_backend.dtos.BenchmarkDTO;
 import com.yuritech.plataforma_benchmark_covid_backend.entities.BenchmarkEntity;
 import com.yuritech.plataforma_benchmark_covid_backend.service.BenchmarkService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -31,4 +32,10 @@ public class BenchmarkController {
         benchmarkService.criarBenchmark(data);
        return ResponseEntity.ok().body(data);
     }
-}
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BenchmarkDTO> listarBenchmarkPorId(@PathVariable String id){
+        BenchmarkDTO resultado = benchmarkService.listarBenchmarkPorId(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benchmark não encontrado"));
+        return ResponseEntity.ok().body(resultado);
+}}

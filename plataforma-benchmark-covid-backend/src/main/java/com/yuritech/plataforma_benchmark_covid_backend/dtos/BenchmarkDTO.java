@@ -6,11 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 @Getter
 @Setter
 public class BenchmarkDTO {
+    private UUID id;
     private String nome;
     private String pais1;
     private String pais2;
