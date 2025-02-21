@@ -35,7 +35,17 @@ public class BenchmarkController {
 
     @GetMapping("/{id}")
     public ResponseEntity<BenchmarkDTO> listarBenchmarkPorId(@PathVariable String id){
-        BenchmarkDTO resultado = benchmarkService.listarBenchmarkPorId(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Benchmark não encontrado"));
+        BenchmarkDTO resultado = benchmarkService.listarBenchmarkPorId(id);
         return ResponseEntity.ok().body(resultado);
-}}
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deletarBenchmark(@PathVariable("id") String id) {
+        benchmarkService.deletarBenchmark(id);
+        return  ResponseEntity.noContent().build();
+    }
+}
+
+
+
+

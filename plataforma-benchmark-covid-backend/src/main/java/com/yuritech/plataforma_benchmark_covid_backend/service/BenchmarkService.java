@@ -46,8 +46,12 @@ public class BenchmarkService {
         return listagemBenchmarks;
     }
 
-    public Optional<BenchmarkDTO>  listarBenchmarkPorId(String id) {
-        var benchmarkExiste = benchmarkRepository.findById(UUID.fromString(id)).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public BenchmarkDTO listarBenchmarkPorId(String id) {
+        UUID idBenchmark = UUID.fromString(id);
+
+        var benchmarkExiste = benchmarkRepository
+                .findById(idBenchmark)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "ID não encontrado"));
 
         var benchmark =  new BenchmarkDTO();
         benchmark.setId(benchmarkExiste.getId());
@@ -57,7 +61,16 @@ public class BenchmarkService {
         benchmark.setDataInicio(benchmarkExiste.getDataInicio());
         benchmark.setDataFim(benchmarkExiste.getDataFim());
 
-        return Optional.of(benchmark);
+        return benchmark;
+    }
+
+    public void deletarBenchmark(String id) {
+         UUID idBenchmark = UUID.fromString(id);
+        benchmarkRepository
+                .findById(idBenchmark)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ID não encontrado"));
+
+        benchmarkRepository.deleteById(idBenchmark);
     }
 }
 
