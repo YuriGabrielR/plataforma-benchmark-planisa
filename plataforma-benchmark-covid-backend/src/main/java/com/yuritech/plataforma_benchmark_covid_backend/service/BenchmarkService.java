@@ -7,6 +7,8 @@ import com.yuritech.plataforma_benchmark_covid_backend.repositories.BenchmarkRep
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BenchmarkService {
 
@@ -35,6 +37,10 @@ public class BenchmarkService {
         return data;
     }
 
+    public List<BenchmarkEntity> listarBenchmarks() {
+        var listagemBenchmarks = benchmarkRepository.findAll();
+        return listagemBenchmarks;
+    }
 }
 
 
