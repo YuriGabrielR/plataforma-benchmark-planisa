@@ -1,9 +1,10 @@
 import { Box, Button, CloseButton, Flex, Input, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import Select, { SingleValue } from 'react-select'
 import { paisesOpcoes } from '../../../global/utilitarios/paises'
 import { useCriarBenchmark } from '../../../hooks/useCriarBenchmark'
+import { useBenchmarkListarPorId } from '../../../hooks/useListarBenchmarkPorId'
 
 interface IFormInput {
   nome: string
@@ -16,22 +17,35 @@ interface IFormInput {
 interface FormularioBenchmarkProps {
   isOpen: boolean
   onClose: () => void
+  id: string
 }
 
-export const FormularioBenchmark: React.FC<FormularioBenchmarkProps> = ({
+export const FormularioBenchmarkEdicao: React.FC<FormularioBenchmarkProps> = ({
   isOpen,
   onClose,
+  id,
 }) => {
   const {
     register,
     handleSubmit,
     control,
     setError,
+    setValue,
     formState: { errors },
   } = useForm<IFormInput>()
 
   const { mutate, isLoading } = useCriarBenchmark()
+  const { data } = useBenchmarkListarPorId(id)
 
+  useEffect(() => {
+    if (data) {
+      setValue('nome', data.nome || '')
+      setValue('pais1', data.pais1 || '')
+      setValue('pais2', data.pais2 || '')
+      setValue('dataInicio', data.dataInicio || '')
+      setValue('dataFim', data.dataFim || '')
+    }
+  }, [data, setValue])
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     const dataForm = {
@@ -40,27 +54,31 @@ export const FormularioBenchmark: React.FC<FormularioBenchmarkProps> = ({
       dataFim: data.dataFim.split('T')[0], 
     }
     mutate(dataForm)
-    
-    if(!isLoading){
-      onClose()
-  }
-  }
 
+    if (!isLoading) {
+      onClose()
+    }
+  }
 
   const validarData = (value: string, fieldName: keyof IFormInput) => {
-    const date = new Date(value)
-    const minDate = new Date('2020-01-01')
-    const maxDate = new Date('2023-10-01')
-
-    if (date < minDate || date > maxDate) {
+    const date = new Date(value); 
+    const minDate = new Date('2020-01-01'); 
+    const maxDate = new Date('2023-10-01'); 
+  
+    const formattedDate = date.toISOString().split('T')[0];
+    const formattedMinDate = minDate.toISOString().split('T')[0];
+    const formattedMaxDate = maxDate.toISOString().split('T')[0];
+  
+    if (formattedDate < formattedMinDate || formattedDate > formattedMaxDate) {
       setError(fieldName, {
         type: 'manual',
         message: `A data deve estar entre 01/01/2020 e 01/10/2023.`,
-      })
-      return false
+      });
+      return false;
     }
-    return true
-  }
+    return true;
+  };
+  
 
   return (
     <Box
@@ -98,14 +116,14 @@ export const FormularioBenchmark: React.FC<FormularioBenchmarkProps> = ({
           fontSize="26px"
           color="#576A7A"
           fontWeight="700">
-          Criar novo benchmark
+          Edição de Benchmark
         </Text>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box display="flex" flexDirection="column" gap="20px" w="400px">
             <Flex direction="column" gap="2px">
               <label htmlFor="nome">
                 <Text color="#576A7A" fontWeight="500" fontSize="14px">
-                  Nomeie seu benchmark:
+                  Renomeie seu benchmark:
                 </Text>
               </label>
               <Input
@@ -138,7 +156,7 @@ export const FormularioBenchmark: React.FC<FormularioBenchmarkProps> = ({
                         selected: SingleValue<{
                           value: string
                           label: string
-                        }>,
+                        }>
                       ) => field.onChange(selected?.value || '')}
                       value={
                         paisesOpcoes.find(
@@ -186,7 +204,7 @@ export const FormularioBenchmark: React.FC<FormularioBenchmarkProps> = ({
                         selected: SingleValue<{
                           value: string
                           label: string
-                        }>,
+                        }>
                       ) => field.onChange(selected?.value || '')}
                       value={
                         paisesOpcoes.find(
@@ -271,7 +289,7 @@ export const FormularioBenchmark: React.FC<FormularioBenchmarkProps> = ({
             </Flex>
 
             <Button bg="#576A7A" type="submit">
-              {isLoading ? 'Salvando' : 'Criar'}
+              {isLoading ? 'Salvando' : 'Editar'}
             </Button>
           </Box>
         </form>
