@@ -56,7 +56,7 @@
 
 ###
 
-<h4 align="left">Back-end:<br><br>Basta rodar os comandos:<br><br>✔ Clonar o projeto:<br>git clone -> https://github.com/YuriGabrielR/plataforma-benchmark-planisa<br><br>✔ Entrar na pasta do back através do comando:<br>cd plataforma-benchmark-covid-backend<br><br>✔ No arquivo application.properties, informe os dados do seu MYSQL. <br><br>spring.application.name=plataforma-benchmark-covid-backend<br>spring.jpa.hibernate.ddl-auto=update<br>spring.jpa.show-sql=true<br>spring.datasource.url=jdbc:mysql://localhost:3306/benchmark<br>spring.datasource.username=usuario_nome<br>spring.datasource.password=usuario)senha<br><br>✔ Rode o projeto!</h4>
+<h4 align="left">Back-end:<br><br>Basta rodar os comandos:<br><br>✔ Clonar o projeto:<br>git clone -> https://github.com/YuriGabrielR/plataforma-benchmark-planisa<br><br>✔ Entrar na pasta do back através do comando:<br>cd plataforma-benchmark-covid-backend<br><br>✔ No arquivo application.properties, informe os dados do seu MYSQL. <br><br>spring.application.name=plataforma-benchmark-covid-backend<br>spring.jpa.hibernate.ddl-auto=update<br>spring.jpa.show-sql=true<br>spring.datasource.url=jdbc:mysql://localhost:3306/benchmark<br>spring.datasource.username=usuario_nome<br>spring.datasource.password=usuario_senha<br><br>✔ Rode o projeto!</h4>
 
 ###
 
