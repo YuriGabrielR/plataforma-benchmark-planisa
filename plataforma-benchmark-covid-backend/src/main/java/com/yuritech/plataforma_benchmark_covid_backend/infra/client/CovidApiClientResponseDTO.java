@@ -2,7 +2,6 @@ package com.yuritech.plataforma_benchmark_covid_backend.infra.client;
 
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
