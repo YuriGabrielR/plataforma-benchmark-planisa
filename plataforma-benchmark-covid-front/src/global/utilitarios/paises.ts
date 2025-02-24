@@ -101,7 +101,7 @@ export const paisesOpcoes = [
     { value: 'switzerland', label: 'Suíça' },
     { value: 'turkey', label: 'Turquia' },
     { value: 'united-kingdom', label: 'Reino Unido' },
-    { value: 'united-states', label: 'Estados Unidos' },
+    { value: 'usa', label: 'Estados Unidos' },
     { value: 'venezuela', label: 'Venezuela' },
     { value: 'vietnam', label: 'Vietnã' },
     { value: 'zimbabwe', label: 'Zimbábue' },
