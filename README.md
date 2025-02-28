@@ -1,4 +1,4 @@
-<h1 align="left">👩🏽‍💻 Benchmark Covid 19 - Planisa</h1>
+<h1 align="left">👩🏽‍💻 Benchmark Covid 19 </h1>
 
 ###
 
